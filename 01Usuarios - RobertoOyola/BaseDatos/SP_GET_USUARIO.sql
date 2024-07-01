@@ -1,0 +1,18 @@
+USE [PROYECTO_1]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_GET_USUARIO]    Script Date: 01/07/2024 02:55:16 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[SP_GET_USUARIO]
+
+
+AS
+	
+BEGIN
+   SELECT * FROM USUARIOS;
+
+
+END

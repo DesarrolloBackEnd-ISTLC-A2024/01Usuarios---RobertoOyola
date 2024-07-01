@@ -1,0 +1,6 @@
+@_01Usuarios___RobertoOyola_HostAddress = http://localhost:5115
+
+GET {{_01Usuarios___RobertoOyola_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
