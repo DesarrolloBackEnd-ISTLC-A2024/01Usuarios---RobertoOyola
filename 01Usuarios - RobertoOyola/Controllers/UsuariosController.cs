@@ -17,11 +17,14 @@ namespace _01Usuarios___RobertoOyola.Controllers
             return ConexionBD.GetUsuarios();
         }
 
+        
+
+
         // GET api/<UsuariosController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Usuario Get(int id)
         {
-            return "value";
+            return ConexionBD.GetUsuarios(id);
         }
 
         // POST api/<UsuariosController>

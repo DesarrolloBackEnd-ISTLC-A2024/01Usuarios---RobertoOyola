@@ -30,6 +30,71 @@ namespace _01Usuarios___RobertoOyola.Comunes
 
         }
 
+        public static Usuario GetUsuarios(int id)
+        {
+            DataSet ds = new DataSet();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = abrirConexion();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "SP_GET_USUARIOU";
+            cmd.Parameters.AddWithValue("PI_ID_USUARIO", id);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(ds);
+            return fillUsuarios(ds)[0];
+        }
+
+        public static void PostUsuario(Usuario objUsuario)
+        {
+            
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = abrirConexion();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "SP_INS_USUARIO";
+            cmd.Parameters.AddWithValue("PV_CODIGO", objUsuario.codigo);
+            cmd.Parameters.AddWithValue("PI_ID_USUARIO", objUsuario.id_usuario);
+            cmd.Parameters.AddWithValue("PV_NOMBRES", objUsuario.nombres);
+            cmd.Parameters.AddWithValue("PV_APELLIDOS", objUsuario.apellidos);
+            cmd.Parameters.AddWithValue("PV_MAIL", objUsuario.mail);
+            cmd.Parameters.AddWithValue("PD_FECHA_NACIMIENTO", objUsuario.fecha_nacimiento);
+            cmd.Parameters.AddWithValue("PV_CONTRASENA", objUsuario.contrasena);
+            cmd.Parameters.AddWithValue("PI_USUARIO_CREACION", objUsuario.usuario_creacion);
+
+            cmd.ExecuteNonQuery();
+            
+        }
+
+        public static void PutUsuario(int usuarioModificacion, Usuario objUsuario)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = abrirConexion();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "SP_UPD_USUARIO";
+            cmd.Parameters.AddWithValue("PI_ID_USUARIO", objUsuario.id_usuario);
+            cmd.Parameters.AddWithValue("PV_CODIGO", objUsuario.codigo);
+            cmd.Parameters.AddWithValue("PI_ID_USUARIO", objUsuario.id_usuario);
+            cmd.Parameters.AddWithValue("PV_NOMBRES", objUsuario.nombres);
+            cmd.Parameters.AddWithValue("PV_APELLIDOS", objUsuario.apellidos);
+            cmd.Parameters.AddWithValue("PV_MAIL", objUsuario.mail);
+            cmd.Parameters.AddWithValue("PD_FECHA_NACIMIENTO", objUsuario.fecha_nacimiento);
+            cmd.Parameters.AddWithValue("PV_CONTRASENA", objUsuario.contrasena);
+            cmd.Parameters.AddWithValue("PI_USUARIO_MODICFICACION", usuarioModificacion);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        internal static void DeleteUsuario(int idUsuario, int idUsuarioModificacion)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = abrirConexion();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "SP_DEL_USUARIO";
+            cmd.Parameters.AddWithValue("PI_ID_USUARIO", idUsuario);
+            cmd.Parameters.AddWithValue("PI_USUARIO_MODICFICACION", idUsuarioModificacion);
+           
+
+            cmd.ExecuteNonQuery();
+        }
+
         private static List<Usuario> fillUsuarios(DataSet ds)
         {
             List<Usuario> lrespuesta = new List<Usuario>();
