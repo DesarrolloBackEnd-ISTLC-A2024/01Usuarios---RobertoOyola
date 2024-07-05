@@ -11,7 +11,8 @@ namespace _01Usuarios___RobertoOyola.Comunes
 
         public static SqlConnection abrirConexion()
         {
-            conexion = new SqlConnection("Server=LANCELOTPC;Database=PROYECTO_1;Trusted_Connection=True;");
+            //conexion = new SqlConnection("Server=LANCELOTPC;Database=PROYECTO_1;Trusted_Connection=True;");
+            conexion = new SqlConnection("Server=DESKTOP-72QF65N\\SQLEXPRESS;Database=PROYECTO_1;Trusted_Connection=True;");
             conexion.Open();
             return conexion;
         }
